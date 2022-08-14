@@ -1,4 +1,5 @@
-import React, { Fragment, useContext } from "react";
+import React, { useContext } from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import ContactContext from "../../context/contact/contactContext";
 import ContactItem from "./ContactItem";
 const Contacts = () => {
@@ -10,13 +11,19 @@ const Contacts = () => {
   }
   return (
     <>
-      {filtered !== null
-        ? filtered.map((contact) => (
-            <ContactItem contact={contact} key={contact.id}></ContactItem>
-          ))
-        : contacts.map((contact) => (
-            <ContactItem contact={contact} key={contact.id}></ContactItem>
-          ))}
+      <TransitionGroup>
+        {filtered !== null
+          ? filtered.map((contact) => (
+              <CSSTransition key={contact.id} timeout={500} classNames='item'>
+                <ContactItem contact={contact}></ContactItem>
+              </CSSTransition>
+            ))
+          : contacts.map((contact) => (
+              <CSSTransition key={contact.id} timeout={500} classNames='item'>
+                <ContactItem contact={contact}></ContactItem>
+              </CSSTransition>
+            ))}
+      </TransitionGroup>
     </>
   );
 };
