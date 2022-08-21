@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import AlertContext from "../../context/alert/alertContext";
 import AuthContext from "../../context/auth/authContext";
+import AlertContext from "../../context/alert/alertContext";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
